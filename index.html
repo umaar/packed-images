@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Canvas Animation - 10 Large Images</title>
+	<!--
+			THERE IS NAUGHTY CODE ON THIS PAGE.
+	-->
+	<link rel="stylesheet" href="css/styles.css">
+	<script type="text/javascript" src="js/anim1.js"></script>
+	<script type="text/javascript" src="js/anim2.js"></script>
+	<script type="text/javascript" src="js/animate.js"></script>
+</head>
+<body>
+
+
+	<h1>Packed Images</h1>
+
+	<div><canvas id="anim1" class="anim1" data-img="anim1" width="800" height="550">
+	<div id="anim_fallback" class="anim_target" style="width: 800px; height: 500px; position: relative;"></div>
+	<p></canvas></div>
+
+
+	<div><canvas id="anim2" class="anim2" data-img="anim2" width="800" height="550">
+	<div id="anim_fallback2" class="anim_target" style="width: 800px; height: 500px; position: relative;"></div>
+	<p></canvas></div>
+
+
+	<div><canvas id="anim3" class="anim3" data-img="anim1" width="800" height="550">
+	<div id="anim_fallback" class="anim_target" style="width: 800px; height: 500px; position: relative;"></div>
+	<p></canvas></div>
+
+
+	<div><canvas id="anim4" class="anim4" data-img="anim2" width="800" height="550">
+	<div id="anim_fallback2" class="anim_target" style="width: 800px; height: 500px; position: relative;"></div>
+	<p></canvas></div>
+
+
+	<div><canvas id="anim5" class="anim5" data-img="anim1" width="800" height="550">
+	<div id="anim_fallback" class="anim_target" style="width: 800px; height: 500px; position: relative;"></div>
+	<p></canvas></div>
+
+
+	<div><canvas id="anim6" class="anim6" data-img="anim2" width="800" height="550">
+	<div id="anim_fallback2" class="anim_target" style="width: 800px; height: 500px; position: relative;"></div>
+	<p></canvas></div>
+
+
+	<div><canvas id="anim7" class="anim7" data-img="anim1" width="800" height="550">
+	<div id="anim_fallback" class="anim_target" style="width: 800px; height: 500px; position: relative;"></div>
+	<p></canvas></div>
+
+
+	<div><canvas id="anim8" class="anim8" data-img="anim2" width="800" height="550">
+	<div id="anim_fallback2" class="anim_target" style="width: 800px; height: 500px; position: relative;"></div>
+	<p></canvas></div>
+
+	<div><canvas id="anim9" class="anim9" data-img="anim1" width="800" height="550">
+	<div id="anim_fallback" class="anim_target" style="width: 800px; height: 500px; position: relative;"></div>
+	<p></canvas></div>
+
+
+	<div><canvas id="anim10" class="anim10" data-img="anim2" width="800" height="550">
+	<div id="anim_fallback2" class="anim_target" style="width: 800px; height: 500px; position: relative;"></div>
+	<p></canvas></div>
+
+
+	<div><canvas id="anim11" class="anim11" data-img="anim1" width="800" height="550">
+	<div id="anim_fallback" class="anim_target" style="width: 800px; height: 500px; position: relative;"></div>
+	<p></canvas></div>
+
+
+	<div><canvas id="anim12" class="anim12" data-img="anim2" width="800" height="550">
+	<div id="anim_fallback2" class="anim_target" style="width: 800px; height: 500px; position: relative;"></div>
+	<p></canvas></div>
+
+
+	<div><canvas id="anim13" class="anim13" data-img="anim1" width="800" height="550">
+	<div id="anim_fallback" class="anim_target" style="width: 800px; height: 500px; position: relative;"></div>
+	<p></canvas></div>
+
+
+	<div><canvas id="anim14" class="anim14" data-img="anim2" width="800" height="550">
+	<div id="anim_fallback2" class="anim_target" style="width: 800px; height: 500px; position: relative;"></div>
+	<p></canvas></div>
+
+
+	<div><canvas id="anim15" class="anim15" data-img="anim1" width="800" height="550">
+	<div id="anim_fallback" class="anim_target" style="width: 800px; height: 500px; position: relative;"></div>
+	<p></canvas></div>
+
+
+	<div><canvas id="anim16" class="anim16" data-img="anim2" width="800" height="550">
+	<div id="anim_fallback2" class="anim_target" style="width: 800px; height: 500px; position: relative;"></div>
+	<p></canvas></div>
+
+	<script>
+	//This would make JSHint very sad.
+	[].forEach.call(document.querySelectorAll("canvas"), function(canvas) {
+		console.log(canvas);
+		set_animation( "img/{{img}}.png".replace("{{img}}", canvas.dataset.img), window[canvas.dataset.img], canvas.id, 'anim_fallback2');
+	});
+	</script>
+
+</body>
+</html>
