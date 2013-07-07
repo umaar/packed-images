@@ -1,12 +1,12 @@
 var exec = require('child_process').exec;
 
-var rect = process.argv[2] || "4,27,800,500";
+var rect = process.argv[2] || "50,50,600,400";
 
 /* How often should we capture the screen */
-var delay = 80;
+var delay = 100;
 
 /* Folder for saving images */
-var folder = "screenshots";
+var folder = "example";
 var command = "screencapture -R"+ rect + " " + folder + "/screen_{{timestamp}}.png";
 
 
@@ -19,7 +19,7 @@ console.log("\n" + helpfulMessage + "\n");
 
 function startCaptureInterval() {
 	setInterval(function() {
-		var timestamp = new Date().getTime();
+		var timestamp = Math.round(+new Date());
 		exec(command.replace("{{timestamp}}", timestamp), function() {});
 	}, delay);
 }

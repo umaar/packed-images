@@ -139,6 +139,7 @@ def generate_animation(anim_name):
     images = [misc.imread(f) for t, f in frames]
 
     zero = images[0] - images[0]
+
     pairs = zip([zero] + images[:-1], images)
     diffs = [sign((b - a).max(2)) for a, b in pairs]
 
