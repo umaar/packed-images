@@ -24,4 +24,9 @@ function startCaptureInterval() {
 	}, delay);
 }
 
-startCaptureInterval();
+exec('rm example/*.png', function() {
+	startCaptureInterval();
+});
+
+
+

@@ -23,7 +23,7 @@
                 if ( fileName.match('screen') ) {
                 	var newFilename = fileNameTemplate.replace('{{timestamp}}', timestamp+= increment)
                 	var command = 'mv ' + fileName + ' ' + newFilename;
-                	execSync(command)
+                	execSync(command);
                 }
             }
 
