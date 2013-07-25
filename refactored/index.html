@@ -3,6 +3,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Packed Images</title>
+	<link rel="stylesheet" href="css/base-styles.css">
+	<link rel="stylesheet" href="css/packed-image.css">
 </head>
 <body>
 
@@ -11,14 +13,16 @@
 	<article>
 		<h3>Example #1</h3>
 		<p>Some description...</p>
-		<img src="" alt="">
+		<div class="packed-image-container">
+			<img
+				class="packed-image"
+				src="img/dom-breakpoint.png"
+				data-anim-name="dom-breakpoint"
+				alt="DOM breakpoints, breaking on attributes modification"
+			/>
+		</div>
 	</article>
 
-	<article>
-		<h3>Example #2</h3>
-		<p>Some description...</p>
-		<img src="" alt="">
-	</article>
 
 	<script src="js/packed-image-timing.js"></script>
 	<script src="js/packed-image-animator.js"></script>
