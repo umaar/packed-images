@@ -1,3 +1,20 @@
+(function(global) {
+	var PackedImages = global.PackedImages || {};
+
+	var animate = function(config) {
+		console.log('Animate called with config: ', config);
+	};
+
+	PackedImages.animate = animate;
+	global.PackedImages = PackedImages;
+
+}(window));
+
+
+
+
+
+
 var delay_scale = 0.7;
 
 var animate = function(img, timeline, element)
