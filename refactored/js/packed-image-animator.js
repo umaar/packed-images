@@ -89,7 +89,14 @@
 
 	PackedImage.prototype.bindEvents = function() {
 		var mouseOverCallback = function() {
-			//this.pause
+			//this.pause();
+		};
+		this.canvas.addEventListener("mouseenter", mouseOverCallback.bind(this));
+	}; //pause
+
+	PackedImage.prototype.bindEvents = function() {
+		var mouseOverCallback = function() {
+			//this.pause();
 		};
 		this.canvas.addEventListener("mouseenter", mouseOverCallback.bind(this));
 	}; //bindEvents
