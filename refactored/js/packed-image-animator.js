@@ -29,16 +29,16 @@
 		this.canvas = document.createElement('canvas');
 		this.canvas.width = 600;
 		this.canvas.height = this.metadata.height;
+		this.canvas.classList.add('packed-image-canvas');
 
 		this.metadata.image.parentElement.appendChild(this.canvas);
 		this.metadata.image.classList.add('hidden');
 
 		var img = new Image();
 		var imgOnLoad = function() {
-			var canvas = document.createElement('canvas');
-			canvas.id = 'xx11';
 			this.img = img;
 			this.start();
+			this.bindEvents();
 		};
 
 		img.addEventListener('load', imgOnLoad.bind(this));
@@ -77,17 +77,21 @@
 				ctx.drawImage(img, sx, sy, w, h, dx, dy, w, h);
 			}
 
-			timer = window.setTimeout(tick, delay);
+			timer = window.setTimeout(tick.bind(this), delay);
 		};
 
 		if (timer) {
 			window.clearTimeout(timer);
 		}
-		tick();
+		var t = tick.bind(this);
+		t();
 	}; //start
 
 	PackedImage.prototype.bindEvents = function() {
-		//
+		var mouseOverCallback = function() {
+			//this.pause
+		};
+		this.canvas.addEventListener("mouseenter", mouseOverCallback.bind(this));
 	}; //bindEvents
 
 	var init = function(config) {
