@@ -52,11 +52,6 @@
 		var delayFactor = this.metadata.delay;
 		var i = 0;
 		var timer;
-		var run_time = 0;
-
-		for (var j = 0; j < timeline.length - 1; ++j) {
-			run_time += timeline[j].delay;
-		}
 
 		var ctx = canvas.getContext('2d');
 
