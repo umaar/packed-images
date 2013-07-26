@@ -9,9 +9,22 @@
 		console.log('Animate called with config: ', config);
 	}; //stop
 
+	var getPackedImageData = function(img) {
+		var data = img.dataset;
+		if ( !data || !Object.keys(data).length ) {
+			return false;
+		}
+
+		return {
+			image: img,
+			name: data.animName,
+			delay: data.delay
+		};
+	};
+
 	var init = function(config) {
 		if (!global.document.querySelectorAll) {
-			console.log('No querySelectorAll method found!')
+			console.log('No querySelectorAll method found!');
 			return;
 		}
 
@@ -26,9 +39,15 @@
 			return;
 		}
 
-		[].forEach.call(elements, function(canvas) {
-			console.log(canvas);
-			set_animation( "img/{{img}}.png".replace("{{img}}", canvas.dataset.img), window[canvas.dataset.img], canvas.id, 'anim_fallback2');
+		[].forEach.call(elements, function(img) {
+			var metadata = getPackedImageData(img);
+
+			if (metadata) {
+
+			} else {
+				console.log('Incomplete metadata found for: ', img);
+			}
+			//set_animation( "img/{{img}}.png".replace("{{img}}", canvas.dataset.img), window[canvas.dataset.img], canvas.id, 'anim_fallback2');
 		});
 
 	}; //init
