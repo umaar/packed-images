@@ -10,6 +10,10 @@
 
 }
 
+.packed-image.hidden {
+	display: none;
+}
+
 .packed-image-container[data-height="650"] {
 	height: 650px;
 }
