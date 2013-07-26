@@ -18,7 +18,8 @@
 		return {
 			image: img,
 			name: data.animName,
-			delay: data.delay
+			delay: data.delay,
+			timingData: PackedImages.timingData[data.animName]
 		};
 	};
 
@@ -43,7 +44,7 @@
 			var metadata = getPackedImageData(img);
 
 			if (metadata) {
-
+				console.log('Metadata found: ', metadata);
 			} else {
 				console.log('Incomplete metadata found for: ', img);
 			}
@@ -53,6 +54,7 @@
 	}; //init
 
 	PackedImages.animate = animate;
+	PackedImages.init = init;
 	global.PackedImages = PackedImages;
 
 }(window));
