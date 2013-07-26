@@ -1,10 +1,9 @@
 (function(global) {
 
 	var init = function() {
-		var config = {
+		global.PackedImages.init({
 			selector: '.packed-image'
-		};
-		global.PackedImages.init(config);
+		});
 	};
 
 	document.addEventListener("DOMContentLoaded", init, false);
