@@ -1,9 +1,37 @@
 (function(global) {
 	var PackedImages = global.PackedImages || {};
 
-	var animate = function(config) {
+	var start = function(config) {
 		console.log('Animate called with config: ', config);
-	};
+	}; //start
+
+	var stop = function() {
+		console.log('Animate called with config: ', config);
+	}; //stop
+
+	var init = function(config) {
+		if (!global.document.querySelectorAll) {
+			console.log('No querySelectorAll method found!')
+			return;
+		}
+
+		if (!config) {
+			console.log('No config has been passed');
+			return;
+		}
+
+		var elements = global.document.querySelectorAll(config.selector);
+		if (!elements.length) {
+			console.log('No elements matching ' + config.selector + ' were found');
+			return;
+		}
+
+		[].forEach.call(elements, function(canvas) {
+			console.log(canvas);
+			set_animation( "img/{{img}}.png".replace("{{img}}", canvas.dataset.img), window[canvas.dataset.img], canvas.id, 'anim_fallback2');
+		});
+
+	}; //init
 
 	PackedImages.animate = animate;
 	global.PackedImages = PackedImages;

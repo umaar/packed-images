@@ -2,9 +2,9 @@
 
 	var init = function() {
 		var config = {
-			foo: 'bar'
+			selector: '.packed-image'
 		};
-		global.PackedImages.animate(config);
+		global.PackedImages.init(config);
 	};
 
 	document.addEventListener("DOMContentLoaded", init, false);
