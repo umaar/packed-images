@@ -34,62 +34,61 @@
 		this.metadata.image.classList.add('hidden');
 
 		var img = new Image();
-		var someFunc = function() {
+		var imgOnLoad = function() {
 			var canvas = document.createElement('canvas');
 			canvas.id = 'xx11';
-			if (canvas.getContext) {
-				this.zimage = img;
-				this.start();
-			}
-		}
+			this.img = img;
+			this.start();
+		};
 
-		img.addEventListener('load', someFunc.bind(this));
+		img.addEventListener('load', imgOnLoad.bind(this));
 		img.src = this.metadata.image.src;
-	};
+	}; //prepare
 
 	PackedImage.prototype.start = function() {
-		var img = this.zimage;
+		var img = this.img;
 		var timeline = this.metadata.timingData;
-		var element = this.canvas;
-		var delay_scale = 0.7;
-
+		var canvas = this.canvas;
+		var delayFactor = this.metadata.delay;
 		var i = 0;
 		var timer;
+		var run_time = 0;
 
-		var run_time = 0
 		for (var j = 0; j < timeline.length - 1; ++j) {
-			run_time += timeline[j].delay
+			run_time += timeline[j].delay;
 		}
 
-		var f = function() {
+		var ctx = canvas.getContext('2d');
 
-			var frame = i++ % timeline.length
-			var delay = timeline[frame].delay * delay_scale
-			var blits = timeline[frame].blit
+		var tick = function() {
 
-			var ctx = element.getContext('2d')
+			var frame = i++ % timeline.length;
+			var delay = timeline[frame].delay * delayFactor;
+			var blits = timeline[frame].blit;
 
-			for (j = 0; j < blits.length; ++j)
-			{
-				var blit = blits[j]
-				var sx = blit[0]
-				var sy = blit[1]
-				var w = blit[2]
-				var h = blit[3]
-				var dx = blit[4]
-				var dy = blit[5]
-				ctx.drawImage(img, sx, sy, w, h, dx, dy, w, h)
+			for (j = 0; j < blits.length; ++j) {
+				var blit = blits[j];
+				var sx = blit[0];
+				var sy = blit[1];
+				var w = blit[2];
+				var h = blit[3];
+				var dx = blit[4];
+				var dy = blit[5];
+				ctx.drawImage(img, sx, sy, w, h, dx, dy, w, h);
 			}
-			timer = window.setTimeout(f, delay)
-		}
 
-		if (timer) window.clearTimeout(timer)
-		f();
-	};
+			timer = window.setTimeout(tick, delay);
+		};
+
+		if (timer) {
+			window.clearTimeout(timer);
+		}
+		tick();
+	}; //start
 
 	PackedImage.prototype.bindEvents = function() {
 		//
-	};
+	}; //bindEvents
 
 	var init = function(config) {
 		if (!global.document.querySelectorAll) {
@@ -113,12 +112,6 @@
 
 			if (metadata) {
 				var pi = new PackedImage(metadata);
-				// pi.start();
-
-				// setTimeout(function() {
-					//pi.start();
-				// }, 30);
-
 			} else {
 				console.log('Incomplete metadata found for: ', img);
 			}
@@ -131,60 +124,3 @@
 	global.PackedImages = PackedImages;
 
 }(window));
-
-
-
-
-
-
-
-
-// var animate_fallback = function(img, timeline, element)
-// {
-// 	var i = 0
-
-// 	var run_time = 0
-// 	for (var j = 0; j < timeline.length - 1; ++j)
-// 		run_time += timeline[j].delay
-
-// 	var f = function()
-// 	{
-// 		if (i % timeline.length == 0)
-// 		{
-// 			while (element.hasChildNodes())
-// 				element.removeChild(element.lastChild)
-// 		}
-
-// 		var frame = i++ % timeline.length
-// 		var delay = timeline[frame].delay * delay_scale
-// 		var blits = timeline[frame].blit
-
-// 		for (j = 0; j < blits.length; ++j)
-// 		{
-// 			var blit = blits[j]
-// 			var sx = blit[0]
-// 			var sy = blit[1]
-// 			var w = blit[2]
-// 			var h = blit[3]
-// 			var dx = blit[4]
-// 			var dy = blit[5]
-
-// 			var d = document.createElement('div')
-// 			d.style.position = 'absolute'
-// 			d.style.left = dx + "px"
-// 			d.style.top = dy + "px"
-// 			d.style.width = w + "px"
-// 			d.style.height = h + "px"
-// 			d.style.backgroundImage = "url('" + img.src + "')"
-// 			d.style.backgroundPosition = "-" + sx + "px -" + sy + "px"
-
-// 			element.appendChild(d)
-// 		}
-
-// 		timer = window.setTimeout(f, delay)
-// 	}
-
-// 	if (timer) window.clearTimeout(timer)
-// 	f()
-// }
-
