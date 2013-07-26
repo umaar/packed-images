@@ -27,12 +27,14 @@
 	PackedImage.prototype.prepare = function() {
 
 		this.canvas = document.createElement('canvas');
+		this.ctx = this.canvas.getContext('2d');
 		this.canvas.width = 600;
 		this.canvas.height = this.metadata.height;
 		this.canvas.classList.add('packed-image-canvas');
 
 		this.metadata.image.parentElement.appendChild(this.canvas);
 		this.metadata.image.classList.add('hidden');
+		this.frameIterator = 0;
 
 		var img = new Image();
 		var imgOnLoad = function() {
@@ -48,16 +50,12 @@
 	PackedImage.prototype.start = function() {
 		var img = this.img;
 		var timeline = this.metadata.timingData;
-		var canvas = this.canvas;
 		var delayFactor = this.metadata.delay;
-		var i = 0;
 		var timer;
-
-		var ctx = canvas.getContext('2d');
 
 		var tick = function() {
 
-			var frame = i++ % timeline.length;
+			var frame = this.frameIterator++ % timeline.length;
 			var delay = timeline[frame].delay * delayFactor;
 			var blits = timeline[frame].blit;
 
@@ -69,10 +67,12 @@
 				var h = blit[3];
 				var dx = blit[4];
 				var dy = blit[5];
-				ctx.drawImage(img, sx, sy, w, h, dx, dy, w, h);
+				this.ctx.drawImage(img, sx, sy, w, h, dx, dy, w, h);
 			}
 
-			timer = window.setTimeout(tick.bind(this), delay);
+			if (!this.paused) {
+				timer = window.setTimeout(tick.bind(this), delay);
+			}
 		};
 
 		if (timer) {
@@ -84,17 +84,16 @@
 
 	PackedImage.prototype.bindEvents = function() {
 		var mouseOverCallback = function() {
-			//this.pause();
+			this.paused = true;
 		};
 		this.canvas.addEventListener("mouseenter", mouseOverCallback.bind(this));
-	}; //pause
 
-	PackedImage.prototype.bindEvents = function() {
-		var mouseOverCallback = function() {
-			//this.pause();
+		var mouseOutCallback = function() {
+			this.paused = false;
+			this.start();
 		};
-		this.canvas.addEventListener("mouseenter", mouseOverCallback.bind(this));
-	}; //bindEvents
+		this.canvas.addEventListener("mouseout", mouseOutCallback.bind(this));
+	}; //pause
 
 	var init = function(config) {
 		if (!global.document.querySelectorAll) {
