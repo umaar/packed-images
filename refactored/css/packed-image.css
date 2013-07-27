@@ -23,6 +23,10 @@
 	line-height: 650px;
 }
 
+.packed-image-container[data-height="400"] .packed-images-icon {
+	line-height: 400px;
+}
+
 .packed-image-container[data-height="200"] .packed-images-icon {
 	line-height: 200px;
 }
