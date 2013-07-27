@@ -37,6 +37,8 @@
 
 		this.pauseButton = document.createElement('span');
 		this.pauseButton.classList.add('packed-images-icon-pause-circled');
+		this.pauseButton.classList.add('animated');
+		this.pauseButton.classList.add('bounceIn');
 		this.pauseButton.classList.add('packed-images-icon');
 		this.metadata.image.parentElement.appendChild(this.pauseButton);
 
