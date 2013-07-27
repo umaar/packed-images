@@ -38,7 +38,6 @@
 		this.pauseButton = document.createElement('span');
 		this.pauseButton.classList.add('packed-images-icon-pause-circled');
 		this.pauseButton.classList.add('packed-images-icon');
-		this.pauseButton.classList.add('packed-images-inactive');
 		this.metadata.image.parentElement.appendChild(this.pauseButton);
 
 		this.frameIterator = 0;
