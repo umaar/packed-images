@@ -90,16 +90,32 @@
 	}; //start
 
 	PackedImage.prototype.bindEvents = function() {
-		var mouseOverCallback = function() {
-			this.paused = true;
-		};
-		this.canvas.addEventListener("mouseenter", mouseOverCallback.bind(this));
+		// var mouseOverCallback = function() {
+		// 	this.paused = true;
+		// };
+		// this.canvas.addEventListener("mouseenter", mouseOverCallback.bind(this));
 
-		var mouseOutCallback = function() {
-			this.paused = false;
-			this.start();
+		// var mouseOutCallback = function() {
+		// 	this.paused = false;
+		// 	this.start();
+		// };
+		// this.canvas.addEventListener("mouseout", mouseOutCallback.bind(this));
+
+		var pauseCallback = function() {
+			if (this.pauseButton.classList.contains('packed-images-icon-play-circled')) {
+				//Play
+				this.pauseButton.classList.remove('packed-images-icon-play-circled');
+				this.pauseButton.classList.add('packed-images-icon-pause-circled');
+				this.paused = false;
+				this.start();
+			} else {
+				//Pause
+				this.pauseButton.classList.remove('packed-images-icon-pause-circled');
+				this.pauseButton.classList.add('packed-images-icon-play-circled');
+				this.paused = true;
+			}
 		};
-		this.canvas.addEventListener("mouseout", mouseOutCallback.bind(this));
+		this.pauseButton.addEventListener("click", pauseCallback.bind(this));
 	}; //pause
 
 	var init = function(config) {
