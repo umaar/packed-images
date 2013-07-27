@@ -18,9 +18,7 @@
 
 	var PackedImage = function(metadata) {
 		this.metadata = metadata;
-
 		this.prepare();
-
 
 	}; //PackedImage
 
@@ -91,16 +89,6 @@
 	}; //start
 
 	PackedImage.prototype.bindEvents = function() {
-		// var mouseOverCallback = function() {
-		// 	this.paused = true;
-		// };
-		// this.canvas.addEventListener("mouseenter", mouseOverCallback.bind(this));
-
-		// var mouseOutCallback = function() {
-		// 	this.paused = false;
-		// 	this.start();
-		// };
-		// this.canvas.addEventListener("mouseout", mouseOutCallback.bind(this));
 
 		var pauseCallback = function() {
 			if (this.pauseButton.classList.contains('packed-images-icon-play-circled')) {
