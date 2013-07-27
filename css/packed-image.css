@@ -1,3 +1,15 @@
+.container {
+	width: 620px;
+	margin: 0 auto;
+	padding: 10px;
+}
+
+.packed-image-example {
+	margin-bottom: 50px;
+	padding-bottom: 21px;
+	margin-bottom: 70px;
+	border-bottom: 10px solid #E9E9E9;
+}
 
 .packed-image-container {
 	border: 1px solid #000;

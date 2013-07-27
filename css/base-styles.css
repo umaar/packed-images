@@ -3,6 +3,10 @@
   -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
  }
 
+ body {
+  font-family: Helvetica;
+ }
+
  @font-face {
    font-family: 'packed-images';
    src: url('../font/packed-images.eot?20695900');
