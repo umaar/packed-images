@@ -4,6 +4,7 @@
 	width: 600px;
 	overflow: hidden;
 	display: inline-block;
+	position: relative;
 }
 
 .packed-image {
@@ -18,10 +19,30 @@
 	height: 650px;
 }
 
-.packed-image-container[data-height="200"] {
-	height: 200px;
+.packed-image-container[data-height="650"] .packed-images-icon {
+	line-height: 650px;
+}
+
+.packed-image-container[data-height="200"] .packed-images-icon {
+	line-height: 200px;
 }
 
 .packed-image-canvas:hover {
 	opacity: 0.7;
+}
+
+.packed-images-icon {
+	position: absolute;
+	top: 0;
+	font-size: 50px;
+	right: 44%;
+	cursor: pointer;
+}
+
+.packed-images-inactive {
+
+}
+
+.packed-images-icon-pause-circled {
+
 }
