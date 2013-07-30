@@ -1,5 +1,7 @@
 (function(global) {
+
 	var PackedImages = global.PackedImages || {};
+
 
 	var getPackedImageData = function(img) {
 		var data = img.dataset;
@@ -7,20 +9,29 @@
 			return false;
 		}
 
-		return {
+		var data = {
 			image: img,
 			name: data.animName,
 			delay: data.delay,
 			height: data.height,
 			timingData: PackedImages.timingData[data.animName]
 		};
+
+		if (data.timingData) {
+			return data;
+		} else {
+			return false;
+		}
+
 	};
+
 
 	var PackedImage = function(metadata) {
 		this.metadata = metadata;
 		this.prepare();
 
 	}; //PackedImage
+
 
 	PackedImage.prototype.prepare = function() {
 
@@ -52,6 +63,7 @@
 		img.addEventListener('load', imgOnLoad.bind(this));
 		img.src = this.metadata.image.src;
 	}; //prepare
+
 
 	PackedImage.prototype.start = function() {
 		var img = this.img;
@@ -88,6 +100,7 @@
 		t();
 	}; //start
 
+
 	PackedImage.prototype.bindEvents = function() {
 
 		var pauseButtonClass = 'packed-images-icon-pause-circled';
@@ -109,6 +122,7 @@
 		};
 		this.pauseButton.addEventListener("click", pauseCallback.bind(this));
 	}; //pause
+
 
 	var init = function(config) {
 		if (!global.document.querySelectorAll) {
@@ -135,10 +149,10 @@
 			} else {
 				console.log('Incomplete metadata found for: ', img);
 			}
-			//set_animation( "img/{{img}}.png".replace("{{img}}", canvas.dataset.img), window[canvas.dataset.img], canvas.id, 'anim_fallback2');
 		});
 
 	}; //init
+
 
 	PackedImages.init = init;
 	global.PackedImages = PackedImages;
