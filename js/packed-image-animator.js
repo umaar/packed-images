@@ -90,17 +90,20 @@
 
 	PackedImage.prototype.bindEvents = function() {
 
+		var pauseButtonClass = 'packed-images-icon-pause-circled';
+		var playButtonClass = 'packed-images-icon-play-circled';
+
 		var pauseCallback = function() {
-			if (this.pauseButton.classList.contains('packed-images-icon-play-circled')) {
+			if (this.pauseButton.classList.contains(playButtonClass)) {
 				//Play
-				this.pauseButton.classList.remove('packed-images-icon-play-circled');
-				this.pauseButton.classList.add('packed-images-icon-pause-circled');
+				this.pauseButton.classList.remove(playButtonClass);
+				this.pauseButton.classList.add(pauseButtonClass);
 				this.paused = false;
 				this.start();
 			} else {
 				//Pause
-				this.pauseButton.classList.remove('packed-images-icon-pause-circled');
-				this.pauseButton.classList.add('packed-images-icon-play-circled');
+				this.pauseButton.classList.remove(pauseButtonClass);
+				this.pauseButton.classList.add(playButtonClass);
 				this.paused = true;
 			}
 		};

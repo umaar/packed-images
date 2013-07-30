@@ -19,10 +19,6 @@
 	position: relative;
 }
 
-.packed-image {
-
-}
-
 .packed-image.hidden {
 	display: none;
 }
@@ -64,6 +60,3 @@
 	display: none;
 }
 
-.packed-images-icon-pause-circled {
-
-}
