@@ -237,9 +237,6 @@ font-family: Helvetica;
 	animation-name: bounceOut;
 }
 
-
-
-
 .container {
 	width: 620px;
 	margin: 0 auto;
@@ -261,26 +258,6 @@ font-family: Helvetica;
 	position: relative;
 }
 
-.packed-image.hidden {
-	display: none;
-}
-
-.packed-image-container[data-height="650"] {
-	height: 650px;
-}
-
-.packed-image-container[data-height="650"] .devtools-animation-icon {
-	line-height: 650px;
-}
-
-.packed-image-container[data-height="400"] .devtools-animation-icon {
-	line-height: 400px;
-}
-
-.packed-image-container[data-height="200"] .devtools-animation-icon {
-	line-height: 200px;
-}
-
 .devtools-animation-container:hover .devtools-animation-icon {
 	display: inline-block;
 }
@@ -298,3 +275,22 @@ font-family: Helvetica;
 	display: none;
 }
 
+/* Highlight on target */
+
+@-webkit-keyframes target {
+	from { background:#ffffd3; }
+	90% { background:#ffffd3; }
+	to { background:#ffffff; }
+}
+
+.devtools-animation-example > a {
+	margin: 0;
+	padding: 10px 0;
+	display: block;
+	outline: none;
+	font-weight: bold;
+}
+
+.devtools-animation-example > a:target {
+	-webkit-animation:target 2s linear;
+}
