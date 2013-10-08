@@ -65,17 +65,17 @@ function log(value) {
   if (global.console && global.console.log) {
     global.console.log(value);
   }
-};
+}
 
 
 // goog.inherits
 function inherits(childCtor, parentCtor) {
-  function tempCtor() {};
+  function tempCtor() {}
   tempCtor.prototype = parentCtor.prototype;
   childCtor.superClass_ = parentCtor.prototype;
   childCtor.prototype = new tempCtor();
   childCtor.prototype.constructor = childCtor;
-};
+}
 
 
 /**
@@ -87,7 +87,7 @@ function makeUnselectable(el) {
   el.style.webkitUserSelect = 'none';
   el.style.msUserSelect = 'none';
   el.style.userSelect = 'none';
-};
+}
 
 
 /**
@@ -333,7 +333,7 @@ Animation.prototype.step_ = function() {
   var blits = timelineData['blit'];
 
   // Clear on first frame.
-  if (frame == 0) {
+  if (frame === 0) {
     this.clear();
   }
 
@@ -401,7 +401,7 @@ Animation.prototype.animateCursor_ = function(frame, duration) {
   function getPositionData(frame) {
     var pos = metadata[frame].split(',');
     return [parseFloat(pos[0]), parseFloat(pos[1])];
-  };
+  }
 
   var prefixes = ['webkit', 'moz', 'ms', 'o'];
   function setTransition(duration) {
@@ -411,20 +411,20 @@ Animation.prototype.animateCursor_ = function(frame, duration) {
     }
     style.transitionProperty = 'left, top';
     style.transitionDuration = duration + 's';
-  };
+  }
   function moveTo(pos) {
     setTransition(0);
     style.left = (CURSOR_OFFSET + pos[0]) + 'px';
     style.top = (CURSOR_OFFSET + pos[1]) + 'px';
-  };
+  }
   function animateTo(pos, duration) {
     setTransition(duration);
     style.left = (CURSOR_OFFSET + pos[0]) + 'px';
     style.top = (CURSOR_OFFSET + pos[1]) + 'px';
-  };
+  }
 
   // On the first frame immediately move to position.
-  if (frame == 0) {
+  if (frame === 0) {
     var initialPosition = getPositionData(0);
     moveTo(initialPosition);
   }
