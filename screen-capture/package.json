@@ -1,0 +1,7 @@
+{
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-cli": "~0.1.9",
+    "exec": "0.0.6"
+  }
+}

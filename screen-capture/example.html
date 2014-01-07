@@ -7,6 +7,12 @@
 var delay_scale = 0.7
 var timer = null
 
+
+var ctx;
+var ratio = 1;
+
+
+
 var animate = function(img, timeline, element)
 {
 	var i = 0
@@ -21,7 +27,7 @@ var animate = function(img, timeline, element)
 		var delay = timeline[frame].delay * delay_scale
 		var blits = timeline[frame].blit
 
-		var ctx = element.getContext('2d')
+		ctx = element.getContext('2d')
 
 		for (j = 0; j < blits.length; ++j)
 		{
@@ -32,7 +38,16 @@ var animate = function(img, timeline, element)
 			var h = blit[3]
 			var dx = blit[4]
 			var dy = blit[5]
+
+
+			// ctx.save();
+			// ctx.scale(2, 2);
+			// ctx.drawImage(img, sx, sy, w, h, dx, dy, w, h)
+			// ctx.restore();
+
 			ctx.drawImage(img, sx, sy, w, h, dx, dy, w, h)
+
+
 		}
 
 		timer = window.setTimeout(f, delay)
@@ -42,54 +57,7 @@ var animate = function(img, timeline, element)
 	f()
 }
 
-var animate_fallback = function(img, timeline, element)
-{
-	var i = 0
 
-	var run_time = 0
-	for (var j = 0; j < timeline.length - 1; ++j)
-		run_time += timeline[j].delay
-
-	var f = function()
-	{
-		if (i % timeline.length == 0)
-		{
-			while (element.hasChildNodes())
-				element.removeChild(element.lastChild)
-		}
-
-		var frame = i++ % timeline.length
-		var delay = timeline[frame].delay * delay_scale
-		var blits = timeline[frame].blit
-
-		for (j = 0; j < blits.length; ++j)
-		{
-			var blit = blits[j]
-			var sx = blit[0]
-			var sy = blit[1]
-			var w = blit[2]
-			var h = blit[3]
-			var dx = blit[4]
-			var dy = blit[5]
-
-			var d = document.createElement('div')
-			d.style.position = 'absolute'
-			d.style.left = dx + "px"
-			d.style.top = dy + "px"
-			d.style.width = w + "px"
-			d.style.height = h + "px"
-			d.style.backgroundImage = "url('" + img.src + "')"
-			d.style.backgroundPosition = "-" + sx + "px -" + sy + "px"
-
-			element.appendChild(d)
-		}
-
-		timer = window.setTimeout(f, delay)
-	}
-
-	if (timer) window.clearTimeout(timer)
-	f()
-}
 
 function set_animation(img_url, timeline, canvas_id, fallback_id)
 {
@@ -97,10 +65,22 @@ function set_animation(img_url, timeline, canvas_id, fallback_id)
 	img.onload = function()
 	{
 		var canvas = document.getElementById(canvas_id)
-		if (canvas && canvas.getContext)
+		if (canvas && canvas.getContext) {
+			ctx = canvas.getContext('2d');
+			if(ctx.webkitBackingStorePixelRatio < 2)
+			{
+			  // default to 1 if property not set //
+			  ratio = window.devicePixelRatio || 1;
+			};
+
+			// resize canvas' logical size (ensure CSS maintains original size)//
+			// var w = ctx.canvas.width;
+			// var h = ctx.canvas.height;
+			// canvas.setAttribute('width', w*ratio)
+			// canvas.setAttribute('height', h*ratio);
+			ctx.scale(1, 1);
 			animate(img, timeline, canvas)
-		else
-			animate_fallback(img, timeline, document.getElementById(fallback_id))
+		}
 	}
 	img.src = img_url
 }
@@ -109,8 +89,14 @@ function set_animation(img_url, timeline, canvas_id, fallback_id)
 
 <body>
 
-<div><canvas id="anim_target" class="anim_target" width="1200" height="650">
-<div id="anim_fallback" class="anim_target" style="width: 650px; height: 500px; position: relative;"></div>
+<style>
+	canvas {
+		width: 565px;
+		height: 600px;
+	}
+</style>
+
+<div><canvas id="anim_target" class="anim_target" width="1130" height="1200">
 <p></canvas></div>
 
 <script>

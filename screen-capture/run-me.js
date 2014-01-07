@@ -1,4 +1,8 @@
-var exec = require('child_process').exec;
+var exec = require('exec');
+
+
+//for retina regular, it's node run-me.js 90,150,565,400
+//for retina large, it's node run-me.js 92,150,565,600
 
 var rect = process.argv[2] || "50,50,600,400";
 
